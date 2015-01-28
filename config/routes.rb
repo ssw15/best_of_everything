@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Neighborhood resource:
+  # CREATE
+  get '/neighborhoods/new',      :controller => 'neighborhoods', :action => 'new',    :as => 'new_neighborhood'
+  post '/neighborhoods',         :controller => 'neighborhoods', :action => 'create', :as => 'neighborhoods'
+
+  # READ
+  get '/neighborhoods',          :controller => 'neighborhoods', :action => 'index'
+  get '/neighborhoods/:id',      :controller => 'neighborhoods', :action => 'show',   :as => 'neighborhood'
+
+  # UPDATE
+  get '/neighborhoods/:id/edit', :controller => 'neighborhoods', :action => 'edit',   :as => 'edit_neighborhood'
+  patch '/neighborhoods/:id',    :controller => 'neighborhoods', :action => 'update'
+
+  # DELETE
+  delete '/neighborhoods/:id',   :controller => 'neighborhoods', :action => 'destroy'
+  #------------------------------
+
   # Routes for the Favorite resource:
   # CREATE
   get '/favorites/new',      :controller => 'favorites', :action => 'new',    :as => 'new_favorite'
