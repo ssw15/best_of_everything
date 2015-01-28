@@ -28,8 +28,22 @@
           </div>
         </div>
       </div>
+
+      <ul class="list-group">
+        <% @user.favorites.each do |favorite| %>
+        <li class="list-group-item">
+          <%= link_to favorite.dish.name, favorite.dish %> at <%= link_to favorite.venue.name, venue_url(favorite.venue.id) %>
+        </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
 
 <!-- End responsive panel example -->
+
+
+
+
+
+
