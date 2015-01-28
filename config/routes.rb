@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Venue resource:
+  # CREATE
+  get '/venues/new',      :controller => 'venues', :action => 'new',    :as => 'new_venue'
+  post '/venues',         :controller => 'venues', :action => 'create', :as => 'venues'
+
+  # READ
+  get '/venues',          :controller => 'venues', :action => 'index'
+  get '/venues/:id',      :controller => 'venues', :action => 'show',   :as => 'venue'
+
+  # UPDATE
+  get '/venues/:id/edit', :controller => 'venues', :action => 'edit',   :as => 'edit_venue'
+  patch '/venues/:id',    :controller => 'venues', :action => 'update'
+
+  # DELETE
+  delete '/venues/:id',   :controller => 'venues', :action => 'destroy'
+  #------------------------------
+
   # Routes for the User resource:
   # CREATE
   get '/users/new',      :controller => 'users', :action => 'new',    :as => 'new_user'
