@@ -25,7 +25,7 @@
               User
             </label>
             <div class="col-sm-10">
-              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @favorite.user_id %>">
+              <%= select_tag(:user_id, options_from_collection_for_select(User.order(:username), :id, :username, @favorite.user_id ), :class => "form-control") %>
             </div>
           </div>
 
@@ -35,7 +35,7 @@
               Dish
             </label>
             <div class="col-sm-10">
-              <input type="text" id="dish_id" name="dish_id" placeholder="Dish" class="form-control" value="<%= @favorite.dish_id %>">
+              <%= select_tag(:dish_id, options_from_collection_for_select(Dish.order(:name), :id, :name, @favorite.dish_id ), :class => "form-control") %>
             </div>
           </div>
 
@@ -45,7 +45,7 @@
               Venue
             </label>
             <div class="col-sm-10">
-              <%= select_tag(:venue_id, options_from_collection_for_select(Venue.all, :id, :name, @favorite.venue_id ), :class => "form-control") %>
+              <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name, @favorite.venue_id ), :class => "form-control") %>
             </div>
           </div>
 
