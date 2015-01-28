@@ -19,7 +19,7 @@ class FavoritesController < ApplicationController
     @favorite.notes = params[:notes]
 
     if @favorite.save
-      redirect_to favorites_url, :notice => "Favorite created successfully."
+      redirect_to :back, :notice => "Favorite created successfully."
     else
       render 'new'
     end

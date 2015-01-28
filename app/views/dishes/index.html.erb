@@ -44,6 +44,16 @@
             <i class="fa fa-trash-o"></i>
           <% end %>
         </div>
+
+        <%= form_tag favorites_url do %>
+          <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name), :class => "form-control") %>
+          <%= select_tag(:user_id, options_from_collection_for_select(User.order(:username), :id, :username), :class => "form-control") %>
+
+          <input type="hidden" name="dish_id" value="<%= dish.id %>">
+
+          <input type="submit">
+        <% end %>
+
       </div>
     </div>
   </div>
