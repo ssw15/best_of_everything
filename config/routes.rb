@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Cuisine resource:
+  # CREATE
+  get '/cuisines/new',      :controller => 'cuisines', :action => 'new',    :as => 'new_cuisine'
+  post '/cuisines',         :controller => 'cuisines', :action => 'create', :as => 'cuisines'
+
+  # READ
+  get '/cuisines',          :controller => 'cuisines', :action => 'index'
+  get '/cuisines/:id',      :controller => 'cuisines', :action => 'show',   :as => 'cuisine'
+
+  # UPDATE
+  get '/cuisines/:id/edit', :controller => 'cuisines', :action => 'edit',   :as => 'edit_cuisine'
+  patch '/cuisines/:id',    :controller => 'cuisines', :action => 'update'
+
+  # DELETE
+  delete '/cuisines/:id',   :controller => 'cuisines', :action => 'destroy'
+  #------------------------------
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
