@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Dish resource:
+  # CREATE
+  get '/dishes/new',      :controller => 'dishes', :action => 'new',    :as => 'new_dish'
+  post '/dishes',         :controller => 'dishes', :action => 'create', :as => 'dishes'
+
+  # READ
+  get '/dishes',          :controller => 'dishes', :action => 'index'
+  get '/dishes/:id',      :controller => 'dishes', :action => 'show',   :as => 'dish'
+
+  # UPDATE
+  get '/dishes/:id/edit', :controller => 'dishes', :action => 'edit',   :as => 'edit_dish'
+  patch '/dishes/:id',    :controller => 'dishes', :action => 'update'
+
+  # DELETE
+  delete '/dishes/:id',   :controller => 'dishes', :action => 'destroy'
+  #------------------------------
+
   # Routes for the Cuisine resource:
   # CREATE
   get '/cuisines/new',      :controller => 'cuisines', :action => 'new',    :as => 'new_cuisine'
