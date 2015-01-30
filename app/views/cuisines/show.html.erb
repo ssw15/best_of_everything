@@ -28,6 +28,39 @@
           </div>
         </div>
       </div>
+
+      <ul class="list-group">
+        <% @cuisine.dishes.each do |dish| %>
+        <li class="list-group-item">
+          <%= link_to dish.name, dish %>
+        </li>
+        <% end %>
+        <li class="list-group-item">
+          <% @dish = Dish.new %>
+          <%= form_tag dishes_url, :method => "post", :class => "form-horizontal" do %>
+            <!-- Label and input for name -->
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">
+                Name
+              </label>
+              <div class="col-sm-10">
+                <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @dish.name %>">
+              </div>
+            </div>
+
+            <!-- Label and input for cuisine_id -->
+            <input type="hidden" id="cuisine_id" name="cuisine_id" placeholder="Cuisine" class="form-control" value="<%= @cuisine.id %>">
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Create Dish" class="btn btn-success">
+                or
+                <a href="/dishes">Cancel</a>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
