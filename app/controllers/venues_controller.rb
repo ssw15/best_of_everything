@@ -18,7 +18,14 @@ class VenuesController < ApplicationController
     @venue.neighborhood_id = params[:neighborhood_id]
 
     if @venue.save
-      redirect_to venues_url, :notice => "Venue created successfully."
+      controller = Rails.application.routes.recognize_path(request.referer)[:controller]
+      action = Rails.application.routes.recognize_path(request.referer)[:action]
+
+      if controller == "venues" && action == "new"
+        redirect_to venues_url, :notice => "Venue created successfully."
+      else
+        redirect_to :back, :notice => "Venue created successfully."
+      end
     else
       render 'new'
     end

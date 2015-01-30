@@ -31,6 +31,48 @@
           </div>
         </div>
       </div>
+      <ul class="list-group">
+        <% @neighborhood.venues.each do |venue| %>
+        <li class="list-group-item">
+          <%= link_to venue.name, venue %>
+        </li>
+        <% end %>
+        <li class="list-group-item">
+          <% @venue = Venue.new %>
+          <%= form_tag venues_url, :method => "post", :class => "form-horizontal" do %>
+            <!-- Label and input for name -->
+            <div class="form-group">
+              <label for="name" class="col-sm-2 control-label">
+                Name
+              </label>
+              <div class="col-sm-10">
+                <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @venue.name %>">
+              </div>
+            </div>
+
+            <!-- Label and input for address -->
+            <div class="form-group">
+              <label for="address" class="col-sm-2 control-label">
+                Address
+              </label>
+              <div class="col-sm-10">
+                <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @venue.address %>">
+              </div>
+            </div>
+
+            <!-- Label and input for neighborhood_id -->
+            <input type="hidden" id="neighborhood_id" name="neighborhood_id" placeholder="Neighborhood" class="form-control" value="<%= @neighborhood.id %>">
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Create Venue" class="btn btn-success">
+                or
+                <a href="/venues">Cancel</a>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
