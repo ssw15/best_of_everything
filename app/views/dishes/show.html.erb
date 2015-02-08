@@ -16,6 +16,12 @@
               <dt>Cuisine</dt>
               <dd><%= @dish.cuisine.name %></dd>
 
+              <% if @dish.favorite(current_user) %>
+                <dt>Venue</dt>
+                <dd><%= @dish.favorite(current_user).venue.name %></dd>
+              <% end %>
+
+
             </dl>
             <div class="btn-group btn-group-justified">
               <%= link_to dishes_url, :class => "btn btn-primary" do %>

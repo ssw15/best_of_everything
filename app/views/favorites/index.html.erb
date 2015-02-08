@@ -43,12 +43,15 @@
           <%= link_to favorite_url(favorite), :class => "btn btn-primary" do %>
             <i class="fa fa-search-plus"></i>
           <% end %>
-          <%= link_to edit_favorite_url(favorite), :class => "btn btn-warning" do %>
-            <i class="fa fa-edit"></i>
+          <% if current_user.id == favorite.user_id %>
+            <%= link_to edit_favorite_url(favorite), :class => "btn btn-warning" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to favorite_url(favorite), :method => "delete", :data => { :confirm => "Do you really want to delete this favorite?" }, :class => "btn btn-danger" do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
           <% end %>
-          <%= link_to favorite_url(favorite), :method => "delete", :data => { :confirm => "Do you really want to delete this favorite?" }, :class => "btn btn-danger" do %>
-            <i class="fa fa-trash-o"></i>
-          <% end %>
+
         </div>
       </div>
     </div>

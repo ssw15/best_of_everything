@@ -44,14 +44,21 @@
             <i class="fa fa-trash-o"></i>
           <% end %>
         </div>
+        <% favorite = dish.favorite(current_user) %>
+        <% if favorite %>
+          <%= form_tag favorite_url(favorite.id), method: :patch do %>
+            <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name), :class => "form-control") %>
+            <input type="hidden" name="dish_id" value="<%= dish.id %>">
 
-        <%= form_tag favorites_url do %>
-          <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name), :class => "form-control") %>
-          <%= select_tag(:user_id, options_from_collection_for_select(User.order(:username), :id, :username), :class => "form-control") %>
+            <input type="submit">
+          <% end %>
+        <% else %>
+          <%= form_tag favorites_url do %>
+            <%= select_tag(:venue_id, options_from_collection_for_select(Venue.order(:name), :id, :name), :class => "form-control") %>
+            <input type="hidden" name="dish_id" value="<%= dish.id %>">
 
-          <input type="hidden" name="dish_id" value="<%= dish.id %>">
-
-          <input type="submit">
+            <input type="submit">
+          <% end %>
         <% end %>
 
       </div>

@@ -4,4 +4,10 @@ class Dish < ActiveRecord::Base
 
   belongs_to :cuisine
   has_many :favorites
+
+  def favorite(user)
+    Favorite.where(user_id: user.id, dish_id: self.id ).first
+  end
 end
+
+

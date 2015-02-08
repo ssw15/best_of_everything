@@ -1,4 +1,13 @@
 class FavoritesController < ApplicationController
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
+  def authorize_user
+    @favorite = Favorite.find(params[:id])
+    if current_user.id != @favorite.user_id
+      redirect_to favorites_url, alert: "Hey! What are you trying to pull?!?!"
+    end
+  end
+
   def index
     @favorites = Favorite.all
   end
@@ -13,7 +22,7 @@ class FavoritesController < ApplicationController
 
   def create
     @favorite = Favorite.new
-    @favorite.user_id = params[:user_id]
+    @favorite.user_id = current_user.id
     @favorite.dish_id = params[:dish_id]
     @favorite.venue_id = params[:venue_id]
     @favorite.notes = params[:notes]
@@ -32,7 +41,7 @@ class FavoritesController < ApplicationController
   def update
     @favorite = Favorite.find(params[:id])
 
-    @favorite.user_id = params[:user_id]
+    @favorite.user_id = current_user.id
     @favorite.dish_id = params[:dish_id]
     @favorite.venue_id = params[:venue_id]
     @favorite.notes = params[:notes]

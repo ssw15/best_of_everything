@@ -19,15 +19,6 @@
       </div>
       <div class="panel-body">
         <%= form_tag favorite_url(@favorite.id), :method => "patch", :class => "form-horizontal" do %>
-          <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="col-sm-2 control-label">
-              User
-            </label>
-            <div class="col-sm-10">
-              <%= select_tag(:user_id, options_from_collection_for_select(User.order(:username), :id, :username, @favorite.user_id ), :class => "form-control") %>
-            </div>
-          </div>
 
           <!-- Label and input for dish_id -->
           <div class="form-group">
